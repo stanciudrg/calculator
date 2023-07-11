@@ -11,6 +11,20 @@ let operatorButtons = document.querySelectorAll('.operator-buttons')
 let equalsButton = document.querySelector('#equals')
 let clearButton = document.querySelector('#clear')
 
+numberButtons.forEach(button => button.addEventListener('click', displayNumbers));
+
+function displayNumbers(e) {
+
+    if (calculator.operating == false) {
+        calculator.number1.push(e.target.textContent);
+        output.textContent = calculator.number1.join('');
+    } else {
+        calculator.number2.push(e.target.textContent);
+        output.textContent = calculator.number2.join('');
+    }
+
+}
+
 function operate() {
 
     switch (calculator.operator) {
