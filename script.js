@@ -12,6 +12,7 @@ let equalsButton = document.querySelector('#equals')
 let clearButton = document.querySelector('#clear')
 
 numberButtons.forEach(button => button.addEventListener('click', displayNumbers));
+operatorButtons.forEach(button => button.addEventListener('click', selectOperator));
 
 function displayNumbers(e) {
 
@@ -54,5 +55,45 @@ function operate() {
     function subtract() { return Number(calculator.number1.join('')) - Number(calculator.number2.join('')) };
     function multiply() { return Number(calculator.number1.join('')) * Number(calculator.number2.join('')) };
     function divide() { return Number(calculator.number1.join('')) / Number(calculator.number2.join('')) };
+
+}
+
+function selectOperator(e) {
+
+    calculator.operating = true;
+    let add = document.getElementById('add');
+    let subtract = document.getElementById('subtract');
+    let multiply = document.getElementById('multiply');
+    let divide = document.getElementById('divide');
+
+    if (calculator.number2.length > 0) {
+        operate();
+        calculator.operator = e.target.textContent;
+    }
+    else {
+        calculator.operator = e.target.textContent;
+    }
+
+    if (e.target == add) {
+        add.classList.add('selected');
+        subtract.classList.remove('selected');
+        multiply.classList.remove('selected');
+        divide.classList.remove('selected');
+    } else if (e.target == subtract) {
+        subtract.classList.add('selected');
+        add.classList.remove('selected');
+        multiply.classList.remove('selected');
+        divide.classList.remove('selected');
+    } else if (e.target == multiply) {
+        multiply.classList.add('selected');
+        add.classList.remove('selected');
+        subtract.classList.remove('selected');
+        divide.classList.remove('selected');
+    } else if (e.target == divide) {
+        divide.classList.add('selected');
+        add.classList.remove('selected');
+        multiply.classList.remove('selected');
+        subtract.classList.remove('selected');
+    }
 
 }

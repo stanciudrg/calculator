@@ -102,3 +102,9 @@ body {
     color: #222831;
     box-shadow: 0px 0px 10px 0.1px rgba(0, 0, 0, 0.2);
 }
+
+.selected {
+    background-color: #fdbd26;
+    color: #222831;
+    box-shadow: 0px 0px 10px 0.1px rgba(0, 0, 0, 0.2);
+}
