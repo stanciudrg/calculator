@@ -13,6 +13,8 @@ let clearButton = document.querySelector('#clear')
 
 numberButtons.forEach(button => button.addEventListener('click', displayNumbers));
 operatorButtons.forEach(button => button.addEventListener('click', selectOperator));
+equalsButton.addEventListener('click', equalize);
+clearButton.addEventListener('click', clear);
 
 function displayNumbers(e) {
 
@@ -95,5 +97,29 @@ function selectOperator(e) {
         multiply.classList.remove('selected');
         subtract.classList.remove('selected');
     }
+
+}
+
+function equalize() {
+
+    operate();
+    add.classList.remove('selected');
+    subtract.classList.remove('selected');
+    multiply.classList.remove('selected');
+    divide.classList.remove('selected');
+
+}
+
+function clear() {
+
+    output.textContent = '0';
+    calculator.number1 = [];
+    calculator.number2 = [];
+    calculator.operator = undefined;
+    calculator.operating = false;
+    add.classList.remove('selected');
+    subtract.classList.remove('selected');
+    multiply.classList.remove('selected');
+    divide.classList.remove('selected');
 
 }
