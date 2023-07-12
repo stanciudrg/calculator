@@ -47,9 +47,14 @@ function operate() {
             output.textContent = calculator.number1.join('');
             break;
         case ' / ':
-            calculator.number1 = divide().split('');
-            calculator.number2 = [];
-            output.textContent = calculator.number1.join('');
+            if (calculator.number1 == 0 || calculator.number2 == 0) {
+                clear()
+                output.textContent = 'ERROR';
+            } else {
+                output.textContent = divide();
+                calculator.number1 = divide().split('');
+                calculator.number2 = [];
+            }
             break;
     }
     function roundDecimals(number) { return number.toFixed(4).replace(/\.?0*$/, ''); }
