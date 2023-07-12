@@ -24,6 +24,9 @@ function displayNumbers(e) {
     } else {
         calculator.number2.push(e.target.textContent);
         output.textContent = calculator.number2.join('');
+        operatorButtons.forEach(button => {
+            button.classList.remove('selected')
+        })
     }
 
 }
@@ -67,11 +70,6 @@ function operate() {
 function selectOperator(e) {
 
     calculator.operating = true;
-    let add = document.getElementById('add');
-    let subtract = document.getElementById('subtract');
-    let multiply = document.getElementById('multiply');
-    let divide = document.getElementById('divide');
-
     if (calculator.number2.length > 0) {
         operate();
         calculator.operator = e.target.textContent;
@@ -79,51 +77,26 @@ function selectOperator(e) {
     else {
         calculator.operator = e.target.textContent;
     }
-
-    if (e.target == add) {
-        add.classList.add('selected');
-        subtract.classList.remove('selected');
-        multiply.classList.remove('selected');
-        divide.classList.remove('selected');
-    } else if (e.target == subtract) {
-        subtract.classList.add('selected');
-        add.classList.remove('selected');
-        multiply.classList.remove('selected');
-        divide.classList.remove('selected');
-    } else if (e.target == multiply) {
-        multiply.classList.add('selected');
-        add.classList.remove('selected');
-        subtract.classList.remove('selected');
-        divide.classList.remove('selected');
-    } else if (e.target == divide) {
-        divide.classList.add('selected');
-        add.classList.remove('selected');
-        multiply.classList.remove('selected');
-        subtract.classList.remove('selected');
-    }
-
+    operatorButtons.forEach(button => {
+        button.classList.remove('selected')
+    })
+    this.classList.add('selected');
 }
 
 function equalize() {
-
     operate();
-    add.classList.remove('selected');
-    subtract.classList.remove('selected');
-    multiply.classList.remove('selected');
-    divide.classList.remove('selected');
-
+    operatorButtons.forEach(button => {
+        button.classList.remove('selected')
+    })
 }
 
 function clear() {
-
     output.textContent = '0';
     calculator.number1 = [];
     calculator.number2 = [];
     calculator.operator = undefined;
     calculator.operating = false;
-    add.classList.remove('selected');
-    subtract.classList.remove('selected');
-    multiply.classList.remove('selected');
-    divide.classList.remove('selected');
-
+    operatorButtons.forEach(button => {
+        button.classList.remove('selected')
+    })
 }
