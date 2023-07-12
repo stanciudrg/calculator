@@ -17,7 +17,7 @@ equalsButton.addEventListener('click', equalize);
 clearButton.addEventListener('click', clear);
 
 function displayNumbers(e) {
-
+    if (e.target.id == 'dot' && output.textContent.includes('.')) { return }
     if (calculator.operating == false) {
         calculator.number1.push(e.target.textContent);
         output.textContent = calculator.number1.join('');
