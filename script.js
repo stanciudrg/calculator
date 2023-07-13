@@ -4,13 +4,13 @@ let operator = undefined;
 let operating = false;
 let equalized = false;
 
-let output = document.querySelector('.output')
-let numberButtons = document.querySelectorAll('.number-buttons')
-let operatorButtons = document.querySelectorAll('.operator-buttons')
-let equalsButton = document.querySelector('#equals')
-let allClearButton = document.querySelector('#allclear')
-let clearButton = document.querySelector('#clear')
-let plusMinusButton = document.querySelector('#plusminus');
+const output = document.querySelector('.output');
+const numberButtons = document.querySelectorAll('.number-buttons');
+const operatorButtons = document.querySelectorAll('.operator-buttons');
+const equalsButton = document.querySelector('#equals');
+const allClearButton = document.querySelector('#allclear');
+const clearButton = document.querySelector('#clear');
+const plusMinusButton = document.querySelector('#plusminus');
 
 numberButtons.forEach(button => button.addEventListener('click', displayNumbers));
 operatorButtons.forEach(button => button.addEventListener('click', selectOperator));
