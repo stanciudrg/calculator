@@ -7,12 +7,14 @@ let output = document.querySelector('.output')
 let numberButtons = document.querySelectorAll('.number-buttons')
 let operatorButtons = document.querySelectorAll('.operator-buttons')
 let equalsButton = document.querySelector('#equals')
+let allClearButton = document.querySelector('#allclear')
 let clearButton = document.querySelector('#clear')
 let plusMinusButton = document.querySelector('#plusminus');
 
 numberButtons.forEach(button => button.addEventListener('click', displayNumbers));
 operatorButtons.forEach(button => button.addEventListener('click', selectOperator));
 equalsButton.addEventListener('click', equalize);
+allClearButton.addEventListener('click', allClear);
 clearButton.addEventListener('click', clear);
 plusMinusButton.addEventListener('click', changeOperator);
 
@@ -118,6 +120,28 @@ function changeOperator() {
     }
 }
 
+function clear() {
+
+    if (operating == false) {
+
+        number1 = ['0'];
+        output.textContent = number1.join('');
+
+    } else if (operating == true && number2.length == 0) {
+
+        number1 = ['0'];
+        output.textContent = number1.join('');
+        stopOperating();
+        unselectOperators()
+
+    } else if (operating == true && number1.length != 0) {
+
+        number2 = ['0'];
+        output.textContent = number2.join('');
+
+    }
+}
+
 function selectOperator(e) {
 
     number1.length > 0 ? operating = true : operating = false;
@@ -138,7 +162,8 @@ function selectOperator(e) {
 
 }
 
-function clear() {
+function allClear() {
+
     output.textContent = '0';
     number1 = [];
     number2 = [];
