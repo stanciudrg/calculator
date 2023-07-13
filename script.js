@@ -16,23 +16,7 @@ operatorButtons.forEach(button => button.addEventListener('click', selectOperato
 equalsButton.addEventListener('click', equalize);
 clearButton.addEventListener('click', clear);
 
-function displayNumbers(e) {
-    if (e.target.id == 'dot' && output.textContent.includes('.')) { return }
-    if (calculator.operating == false) {
-        calculator.number1.push(e.target.textContent);
-        output.textContent = calculator.number1.join('');
-    } else {
-        calculator.number2.push(e.target.textContent);
-        output.textContent = calculator.number2.join('');
-        operatorButtons.forEach(button => {
-            button.classList.remove('selected')
-        })
-    }
-
-}
-
 function operate() {
-
     switch (calculator.operator) {
         case ' + ':
             calculator.number1 = add().split('');
@@ -67,36 +51,58 @@ function operate() {
     function divide() { return roundDecimals(Number(calculator.number1.join('')) / Number(calculator.number2.join(''))) };
 }
 
-function selectOperator(e) {
-
-    calculator.operating = true;
-    if (calculator.number2.length > 0) {
-        operate();
-        calculator.operator = e.target.textContent;
+function displayNumbers(e) {
+    if (e.target.id == 'dot' && output.textContent.includes('.')) { return }
+    if (calculator.operating == false) {
+        calculator.number1.push(e.target.textContent);
+        output.textContent = calculator.number1.join('');
+    } else {
+        calculator.number2.push(e.target.textContent);
+        output.textContent = calculator.number2.join('');
+        unselectOperators();
     }
-    else {
-        calculator.operator = e.target.textContent;
-    }
-    operatorButtons.forEach(button => {
-        button.classList.remove('selected')
-    })
-    this.classList.add('selected');
 }
 
-function equalize() {
-    operate();
-    operatorButtons.forEach(button => {
-        button.classList.remove('selected')
-    })
+
+function selectOperator(e) {
+    calculator.operating = true;
+    if (calculator.number2.length > 0) {
+
+        operate();
+        calculator.operator = e.target.textContent;
+
+    }
+    else {
+
+        calculator.operator = e.target.textContent;
+
+    }
+
+    unselectOperators();
+    this.classList.add('selected');
+
 }
 
 function clear() {
     output.textContent = '0';
     calculator.number1 = [];
     calculator.number2 = [];
+    stopOperating();
+    unselectOperators();
+}
+
+
+function equalize() {
+    operate();
+    stopOperating()
+    unselectOperators();
+}
+
+function stopOperating() {
+
     calculator.operator = undefined;
     calculator.operating = false;
-    operatorButtons.forEach(button => {
-        button.classList.remove('selected')
-    })
+
 }
+
+function unselectOperators() { operatorButtons.forEach(button => { button.classList.remove('selected') }) }
