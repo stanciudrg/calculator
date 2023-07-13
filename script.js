@@ -1,9 +1,7 @@
-let calculator = {
-    number1: [],
-    number2: [],
-    operator: undefined,
-    operating: false,
-}
+let number1 = [];
+let number2 = [];
+let operator = undefined;
+let operating = false;
 
 let output = document.querySelector('.output')
 let numberButtons = document.querySelectorAll('.number-buttons')
@@ -17,64 +15,64 @@ equalsButton.addEventListener('click', equalize);
 clearButton.addEventListener('click', clear);
 
 function operate() {
-    switch (calculator.operator) {
+    switch (operator) {
         case ' + ':
-            calculator.number1 = add().split('');
-            calculator.number2 = [];
-            output.textContent = calculator.number1.join('');
+            number1 = add().split('');
+            number2 = [];
+            output.textContent = number1.join('');
             break;
         case ' - ':
-            calculator.number1 = subtract().split('');
-            calculator.number2 = [];
-            output.textContent = calculator.number1.join('');;
+            number1 = subtract().split('');
+            number2 = [];
+            output.textContent = number1.join('');;
             break;
         case ' x ':
-            calculator.number1 = multiply().split('');
-            calculator.number2 = [];
-            output.textContent = calculator.number1.join('');
+            number1 = multiply().split('');
+            number2 = [];
+            output.textContent = number1.join('');
             break;
         case ' / ':
-            if (calculator.number1 == 0 || calculator.number2 == 0) {
+            if (number1 == 0 || number2 == 0) {
                 clear()
                 output.textContent = 'ERROR';
             } else {
                 output.textContent = divide();
-                calculator.number1 = divide().split('');
-                calculator.number2 = [];
+                number1 = divide().split('');
+                number2 = [];
             }
             break;
     }
     function roundDecimals(number) { return number.toFixed(4).replace(/\.?0*$/, ''); }
-    function add() { return roundDecimals(Number(calculator.number1.join('')) + Number(calculator.number2.join(''))) };
-    function subtract() { return roundDecimals(Number(calculator.number1.join('')) - Number(calculator.number2.join(''))) };
-    function multiply() { return roundDecimals(Number(calculator.number1.join('')) * Number(calculator.number2.join(''))) };
-    function divide() { return roundDecimals(Number(calculator.number1.join('')) / Number(calculator.number2.join(''))) };
+    function add() { return roundDecimals(Number(number1.join('')) + Number(number2.join(''))) };
+    function subtract() { return roundDecimals(Number(number1.join('')) - Number(number2.join(''))) };
+    function multiply() { return roundDecimals(Number(number1.join('')) * Number(number2.join(''))) };
+    function divide() { return roundDecimals(Number(number1.join('')) / Number(number2.join(''))) };
 }
 
 function displayNumbers(e) {
     if (e.target.id == 'dot' && output.textContent.includes('.')) { return }
-    if (calculator.operating == false) {
-        calculator.number1.push(e.target.textContent);
-        output.textContent = calculator.number1.join('');
+    if (operating == false) {
+        number1.push(e.target.textContent);
+        output.textContent = number1.join('');
     } else {
-        calculator.number2.push(e.target.textContent);
-        output.textContent = calculator.number2.join('');
+        number2.push(e.target.textContent);
+        output.textContent = number2.join('');
         unselectOperators();
     }
 }
 
 
 function selectOperator(e) {
-    calculator.operating = true;
-    if (calculator.number2.length > 0) {
+    operating = true;
+    if (number2.length > 0) {
 
         operate();
-        calculator.operator = e.target.textContent;
+        operator = e.target.textContent;
 
     }
     else {
 
-        calculator.operator = e.target.textContent;
+        operator = e.target.textContent;
 
     }
 
@@ -85,8 +83,8 @@ function selectOperator(e) {
 
 function clear() {
     output.textContent = '0';
-    calculator.number1 = [];
-    calculator.number2 = [];
+    number1 = [];
+    number2 = [];
     stopOperating();
     unselectOperators();
 }
@@ -100,8 +98,8 @@ function equalize() {
 
 function stopOperating() {
 
-    calculator.operator = undefined;
-    calculator.operating = false;
+    operator = undefined;
+    operating = false;
 
 }
 
