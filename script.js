@@ -2,6 +2,7 @@ let number1 = [];
 let number2 = [];
 let operator = undefined;
 let operating = false;
+let equalized = false;
 
 let output = document.querySelector('.output')
 let numberButtons = document.querySelectorAll('.number-buttons')
@@ -21,6 +22,7 @@ plusMinusButton.addEventListener('click', changeOperator);
 function operate() {
 
     if (number1.length == 0 || number2.length == 0) { return };
+
     number1 = Number(number1.join(''));
     number2 = Number(number2.join(''));
 
@@ -73,15 +75,38 @@ function operate() {
 }
 
 function displayNumbers(e) {
-    if (e.target.id == 'dot' && output.textContent.includes('.')) { return }
+
     if (operating == false) {
+
+        if (equalized == true) {
+
+            clear()
+            equalized = false;
+
+        }
+
+        if (e.target.id == 'dot' && number1.length == 0) { number1.push('0'); }
+        if (e.target.id == 'dot' && number1.includes('.')) { return };
+        if (number1[0] == 0 && number1.length > 0 && number1.length < 2 && e.target.id !== 'dot') { number1.splice(0, 1) };
+        if (number1[0] == '-' && number1[1] == 0 && number1[2] != '.' && number1.length > 0 && e.target.id !== 'dot') { number1.splice(1, 1) };
+
         number1.push(e.target.textContent);
         output.textContent = number1.join('');
+        unselectOperators()
+
     } else {
+
+        if (e.target.id == 'dot' && number2.length == 0) { number2.push('0'); }
+        if (e.target.id == 'dot' && number2.includes('.')) { return };
+        if (number2[0] == 0 && number2.length > 0 && number2.length < 2 && e.target.id !== 'dot') { number2.splice(0, 1) }
+        if (number2[0] == '-' && number2[1] == 0 && number2[2] != '.' && number2.length > 0 && e.target.id !== 'dot') { number2.splice(1, 1) };
+
         number2.push(e.target.textContent);
         output.textContent = number2.join('');
-        unselectOperators();
+        unselectOperators()
+
     }
+
 }
 
 function changeOperator() {
@@ -173,9 +198,12 @@ function allClear() {
 
 
 function equalize() {
+
     operate();
+    equalized = true;
     stopOperating()
     unselectOperators();
+
 }
 
 function stopOperating() {
