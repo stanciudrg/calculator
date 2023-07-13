@@ -53,7 +53,7 @@ function operate() {
 
             if (number1 == 0 || number2 == 0) {
 
-                clear()
+                clear();
                 output.textContent = 'ERROR';
 
             } else {
@@ -66,11 +66,11 @@ function operate() {
 
     }
 
-    function roundDecimals(number) { return number.toFixed(4).replace(/\.?0*$/, '') }
-    function add() { return roundDecimals(number1 + number2) };
-    function subtract() { return roundDecimals(number1 - number2) };
-    function multiply() { return roundDecimals(number1 * number2) };
-    function divide() { return roundDecimals(number1 / number2) };
+    function roundDecimals(number) { return number.toFixed(4).replace(/\.?0*$/, ''); };
+    function add() { return roundDecimals(number1 + number2); };
+    function subtract() { return roundDecimals(number1 - number2); };
+    function multiply() { return roundDecimals(number1 * number2); };
+    function divide() { return roundDecimals(number1 / number2); };
 
 }
 
@@ -80,34 +80,34 @@ function displayNumbers(e) {
 
         if (equalized == true) {
 
-            clear()
+            clear();
             equalized = false;
 
         }
 
-        if (e.target.id == 'dot' && number1.length == 0) { number1.push('0'); }
-        if (e.target.id == 'dot' && number1.includes('.')) { return };
-        if (number1[0] == 0 && number1.length > 0 && number1.length < 2 && e.target.id !== 'dot') { number1.splice(0, 1) };
-        if (number1[0] == '-' && number1[1] == 0 && number1[2] != '.' && number1.length > 0 && e.target.id !== 'dot') { number1.splice(1, 1) };
+        if (e.target.id == 'dot' && number1.length == 0) { number1.push('0'); };
+        if (e.target.id == 'dot' && number1.includes('.')) { return; };
+        if (number1[0] == 0 && number1.length > 0 && number1.length < 2 && e.target.id !== 'dot') { number1.splice(0, 1); };
+        if (number1[0] == '-' && number1[1] == 0 && number1[2] != '.' && number1.length > 0 && e.target.id !== 'dot') { number1.splice(1, 1); };
 
         number1.push(e.target.textContent);
         output.textContent = number1.join('');
-        unselectOperators()
+        unselectOperators();
 
     } else {
 
         if (e.target.id == 'dot' && number2.length == 0) { number2.push('0'); }
-        if (e.target.id == 'dot' && number2.includes('.')) { return };
-        if (number2[0] == 0 && number2.length > 0 && number2.length < 2 && e.target.id !== 'dot') { number2.splice(0, 1) }
-        if (number2[0] == '-' && number2[1] == 0 && number2[2] != '.' && number2.length > 0 && e.target.id !== 'dot') { number2.splice(1, 1) };
+        if (e.target.id == 'dot' && number2.includes('.')) { return; };
+        if (number2[0] == 0 && number2.length > 0 && number2.length < 2 && e.target.id !== 'dot') { number2.splice(0, 1); };
+        if (number2[0] == '-' && number2[1] == 0 && number2[2] != '.' && number2.length > 0 && e.target.id !== 'dot') { number2.splice(1, 1); };
 
         number2.push(e.target.textContent);
         output.textContent = number2.join('');
-        unselectOperators()
+        unselectOperators();
 
     }
 
-}
+};
 
 function changeOperator() {
 
@@ -122,7 +122,7 @@ function changeOperator() {
 
             if (number1.length == 0) { number1.unshift('0'); }
 
-            number1.unshift('-')
+            number1.unshift('-');
             output.textContent = number1.join('');
 
         }
@@ -132,18 +132,18 @@ function changeOperator() {
         if (number2[0] == '-') {
 
             number2.splice(0, 1);
-            output.textContent = number2.join('')
+            output.textContent = number2.join('');
 
         } else {
 
             if (number2.length == 0) { number2.unshift('0'); }
 
-            number2.unshift('-')
+            number2.unshift('-');
             output.textContent = number2.join('');
 
         }
     }
-}
+};
 
 function clear() {
 
@@ -157,7 +157,7 @@ function clear() {
         number1 = ['0'];
         output.textContent = number1.join('');
         stopOperating();
-        unselectOperators()
+        unselectOperators();
 
     } else if (operating == true && number1.length != 0) {
 
@@ -165,7 +165,7 @@ function clear() {
         output.textContent = number2.join('');
 
     }
-}
+};
 
 function selectOperator(e) {
 
@@ -185,7 +185,7 @@ function selectOperator(e) {
     unselectOperators();
     this.classList.add('selected');
 
-}
+};
 
 function allClear() {
 
@@ -194,23 +194,23 @@ function allClear() {
     number2 = [];
     stopOperating();
     unselectOperators();
-}
+};
 
 
 function equalize() {
 
     operate();
     equalized = true;
-    stopOperating()
+    stopOperating();
     unselectOperators();
 
-}
+};
 
 function stopOperating() {
 
     operator = undefined;
     operating = false;
 
-}
+};
 
-function unselectOperators() { operatorButtons.forEach(button => { button.classList.remove('selected') }) }
+function unselectOperators() { operatorButtons.forEach(button => { button.classList.remove('selected') }) };
