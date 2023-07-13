@@ -82,14 +82,15 @@ function displayNumbers(e) {
 
 
 function selectOperator(e) {
-    operating = true;
+
+    number1.length > 0 ? operating = true : operating = false;
+
     if (number2.length > 0) {
 
         operate();
         operator = e.target.textContent;
 
-    }
-    else {
+    } else {
 
         operator = e.target.textContent;
 
