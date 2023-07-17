@@ -92,33 +92,46 @@ body {
 
 .functional-buttons {
     background-color: #a9a9af;
-    transition: .2s;
+    transition: .1s;
 }
 
 .functional-buttons:hover {
     background-color: #dadae0;
 }
 
+.functional-buttons:active {
+    background-color: #fafaff;
+}
+
 .number-buttons {
     background-color: #393E46;
     color: #EEEEEE;
-    transition: .2s;
+    transition: .1s;
 }
 
 .number-buttons:hover {
     background-color: #525863;
 }
 
+.number-buttons:active {
+    background-color: #727781;
+}
+
 .operator-buttons,
 #equals {
     background-color: #9a3b3b;
     color: #EEEEEE;
-    transition: .2s;
+    transition: .1s;
 }
 
 .operator-buttons:hover,
 #equals:hover {
     background-color: #EEEEEE;
+    color: #9a3b3b;
+}
+
+#equals:active {
+    background-color: #ffffff;
     color: #9a3b3b;
 }
 
