@@ -51,7 +51,7 @@ function operate() {
 
         case ' / ':
 
-            if (number1 == 0 || number2 == 0) {
+            if (number1 == '0' || number2 == '0') {
 
                 clear();
                 output.textContent = 'ERROR';
@@ -90,9 +90,13 @@ function displayNumbers(e) {
         if (number1[0] == 0 && number1.length > 0 && number1.length < 2 && e.target.id !== 'dot') { number1.splice(0, 1); };
         if (number1[0] == '-' && number1[1] == 0 && number1[2] != '.' && number1.length > 0 && e.target.id !== 'dot') { number1.splice(1, 1); };
 
-        number1.push(e.target.textContent);
-        output.textContent = number1.join('');
-        unselectOperators();
+        if (number1.length < 9 || (number1.length < 10 && number1.includes('.'))) {
+
+            number1.push(e.target.textContent)
+            output.textContent = number1.join('');
+            unselectOperators()
+
+        };
 
     } else {
 
@@ -101,9 +105,13 @@ function displayNumbers(e) {
         if (number2[0] == 0 && number2.length > 0 && number2.length < 2 && e.target.id !== 'dot') { number2.splice(0, 1); };
         if (number2[0] == '-' && number2[1] == 0 && number2[2] != '.' && number2.length > 0 && e.target.id !== 'dot') { number2.splice(1, 1); };
 
-        number2.push(e.target.textContent);
-        output.textContent = number2.join('');
-        unselectOperators();
+        if (number2.length < 9 || (number2.length < 10 && number2.includes('.'))) {
+
+            number2.push(e.target.textContent)
+            output.textContent = number2.join('');
+            unselectOperators()
+
+        };
 
     }
 
