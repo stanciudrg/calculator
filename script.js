@@ -23,8 +23,8 @@ function operate() {
 
     if (number1.length == 0 || number2.length == 0) { return };
 
-    number1 = Number(number1.join(''));
-    number2 = Number(number2.join(''));
+    let a = Number(number1.join(''));
+    let b = Number(number2.join(''));
 
     switch (operator) {
 
@@ -67,10 +67,10 @@ function operate() {
     }
 
     function roundDecimals(number) { return number.toFixed(4).replace(/\.?0*$/, ''); };
-    function add() { return roundDecimals(number1 + number2); };
-    function subtract() { return roundDecimals(number1 - number2); };
-    function multiply() { return roundDecimals(number1 * number2); };
-    function divide() { return roundDecimals(number1 / number2); };
+    function add() { return roundDecimals(a + b); };
+    function subtract() { return roundDecimals(a - b); };
+    function multiply() { return roundDecimals(a * b); };
+    function divide() { return roundDecimals(a / b); };
 
 }
 
