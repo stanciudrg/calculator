@@ -189,3 +189,114 @@ function stopOperating() {
 };
 
 function unselectOperators() { operatorButtons.forEach(button => { button.classList.remove('selected') }) };
+
+document.addEventListener('keydown', (e) => {
+
+    e.preventDefault();
+
+    switch (e.key) {
+
+        case 'Escape':
+
+            allClear();
+            break;
+
+        case 'Backspace':
+
+            clear();
+            break;
+
+        case 'Enter':
+
+            equalize();
+            break;
+
+        case '=':
+
+            equalize();
+            break;
+
+        case '+':
+
+            selectOperatorByKbd();
+            operator = ' + ';
+            break;
+
+        case '-':
+
+            selectOperatorByKbd();
+            operator = ' - ';
+            break;
+
+        case 'x':
+
+            selectOperatorByKbd();
+            operator = ' x ';
+            break;
+
+        case 'X':
+
+            selectOperatorByKbd();
+            operator = ' x ';
+            break;
+
+        case '*':
+
+            selectOperatorByKbd();
+            operator = ' x ';
+            break;
+
+
+        case '/':
+
+            selectOperatorByKbd();
+            operator = ' / ';
+            break;
+
+        case ':':
+
+            selectOperatorByKbd();
+            operator = ' / ';
+            break;
+
+    }
+
+    function selectOperatorByKbd() {
+
+        number1.length > 0 ? operating = true : operating = false;
+        if (number2.length > 0) { operate() }
+        unselectOperators()
+
+    }
+
+    if (((e.key >= 0 && e.key <= 9) || e.key == '.') && e.key !== ' ') {
+
+        if (operating == false) {
+
+            if (equalized == true) { clear() }
+
+            equalized = false;
+            display(number1);
+
+        } else { display(number2); }
+
+        function display(number) {
+
+            if (e.key == '.' && number.length == 0) { number.push('0'); }
+            if (e.key == '.' && number.includes('.')) { return };
+            if (number[0] == 0 && number.length > 0 && number.length < 2 && e.key !== '.') { number.splice(0, 1) };
+            if (number[0] == '-' && number[1] == 0 && number[2] != '.' && number.length > 0 && e.key !== '.') { number.splice(1, 1) };
+
+            if (number.length < 9 || (number.length < 10 && number.includes('.'))) {
+
+                number.push(e.key)
+                output.textContent = number.join('');
+                unselectOperators()
+
+            };
+
+        }
+
+    }
+
+})
