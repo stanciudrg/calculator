@@ -92,11 +92,8 @@ body {
 
 .functional-buttons {
     background-color: #a9a9af;
-    transition: .1s;
-}
-
-.functional-buttons:hover {
-    background-color: #dadae0;
+    color: #222831;
+    transition: .2s;
 }
 
 .functional-buttons:active {
@@ -106,11 +103,7 @@ body {
 .number-buttons {
     background-color: #393E46;
     color: #EEEEEE;
-    transition: .1s;
-}
-
-.number-buttons:hover {
-    background-color: #525863;
+    transition: .2s;
 }
 
 .number-buttons:active {
@@ -121,13 +114,7 @@ body {
 #equals {
     background-color: #9a3b3b;
     color: #EEEEEE;
-    transition: .1s;
-}
-
-.operator-buttons:hover,
-#equals:hover {
-    background-color: #EEEEEE;
-    color: #9a3b3b;
+    transition: .2s;
 }
 
 #equals:active {
@@ -138,4 +125,22 @@ body {
 .selected {
     background-color: #EEEEEE;
     color: #9a3b3b;
+}
+
+@media(hover: hover) and (pointer: fine) {
+
+    .functional-buttons:hover {
+        background-color: #dadae0;
+    }
+
+    .number-buttons:hover {
+        background-color: #525863;
+    }
+
+    .operator-buttons:hover,
+    #equals:hover {
+        background-color: #EEEEEE;
+        color: #9a3b3b;
+    }
+
 }
