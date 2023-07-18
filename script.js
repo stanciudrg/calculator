@@ -30,21 +30,21 @@ function operate() {
 
         case ' + ':
 
-            number1 = add().split('');
+            number1 = roundDecimals(a + b, 8).split('');
             number2 = [];
             output.textContent = number1.join('');
             break;
 
         case ' - ':
 
-            number1 = subtract().split('');
+            number1 = roundDecimals(a - b, 8).split('');
             number2 = [];
-            output.textContent = number1.join('');;
+            output.textContent = number1.join('');
             break;
 
         case ' x ':
 
-            number1 = multiply().split('');
+            number1 = roundDecimals(a * b, 8).split('');
             number2 = [];
             output.textContent = number1.join('');
             break;
@@ -53,12 +53,12 @@ function operate() {
 
             if (number1 == '0' || number2 == '0') {
 
-                clear();
+                allClear()
                 output.textContent = 'ERROR';
 
             } else {
 
-                number1 = divide().split('');
+                number1 = roundDecimals(a / b, 8).split('');
                 number2 = [];
                 output.textContent = number1.join('');
 
@@ -73,11 +73,25 @@ function operate() {
 
     }
 
-    function roundDecimals(number) { return number.toFixed(4).replace(/\.?0*$/, ''); };
-    function add() { return roundDecimals(a + b); };
-    function subtract() { return roundDecimals(a - b); };
-    function multiply() { return roundDecimals(a * b); };
-    function divide() { return roundDecimals(a / b); };
+    function roundDecimals(number, places) {
+
+        let keepGoing;
+        let converted = number.toFixed(places).replace(/\.?0*$/, '')
+
+        if (converted.toString().split('').length > 10 && converted.toString().split('').includes('.') && !converted.toString().split('').includes('e')) { keepGoing = true; }
+
+        while (keepGoing) {
+
+            if (places == 0) { keepGoing = false; };
+            places--;
+            converted = roundDecimals(number, places);
+            keepGoing = false;
+
+        }
+
+        return converted;
+
+    }
 
 }
 
