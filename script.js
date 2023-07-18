@@ -66,6 +66,13 @@ function operate() {
 
     }
 
+    if ((number1.length > 9 && !number1.includes('.')) || (number1.length > 10 && number1.includes('.'))) {
+
+        number1 = Number(number1.join('')).toExponential(4).split('');
+        output.textContent = number1.join('');
+
+    }
+
     function roundDecimals(number) { return number.toFixed(4).replace(/\.?0*$/, ''); };
     function add() { return roundDecimals(a + b); };
     function subtract() { return roundDecimals(a - b); };
