@@ -78,80 +78,55 @@ function displayNumbers(e) {
 
     if (operating == false) {
 
-        if (equalized == true) {
+        if (equalized == true) { clear() }
 
-            clear();
-            equalized = false;
+        equalized = false;
+        display(number1);
 
-        }
+    } else { display(number2); }
 
-        if (e.target.id == 'dot' && number1.length == 0) { number1.push('0'); };
-        if (e.target.id == 'dot' && number1.includes('.')) { return; };
-        if (number1[0] == 0 && number1.length > 0 && number1.length < 2 && e.target.id !== 'dot') { number1.splice(0, 1); };
-        if (number1[0] == '-' && number1[1] == 0 && number1[2] != '.' && number1.length > 0 && e.target.id !== 'dot') { number1.splice(1, 1); };
+    function display(number) {
 
-        if (number1.length < 9 || (number1.length < 10 && number1.includes('.'))) {
+        if (e.target.id == 'dot' && number.length == 0) { number.push('0'); }
+        if (e.target.id == 'dot' && number.includes('.')) { return };
+        if (number[0] == 0 && number.length > 0 && number.length < 2 && e.target.id !== 'dot') { number.splice(0, 1) };
+        if (number[0] == '-' && number[1] == 0 && number[2] != '.' && number.length > 0 && e.target.id !== 'dot') { number.splice(1, 1) };
 
-            number1.push(e.target.textContent)
-            output.textContent = number1.join('');
-            unselectOperators()
+        if (number.length < 9 || (number.length < 10 && number.includes('.'))) {
 
-        };
-
-    } else {
-
-        if (e.target.id == 'dot' && number2.length == 0) { number2.push('0'); }
-        if (e.target.id == 'dot' && number2.includes('.')) { return; };
-        if (number2[0] == 0 && number2.length > 0 && number2.length < 2 && e.target.id !== 'dot') { number2.splice(0, 1); };
-        if (number2[0] == '-' && number2[1] == 0 && number2[2] != '.' && number2.length > 0 && e.target.id !== 'dot') { number2.splice(1, 1); };
-
-        if (number2.length < 9 || (number2.length < 10 && number2.includes('.'))) {
-
-            number2.push(e.target.textContent)
-            output.textContent = number2.join('');
+            number.push(e.target.textContent)
+            output.textContent = number.join('');
             unselectOperators()
 
         };
 
     }
 
-};
+}
 
 function changeOperator() {
 
-    if (operating == false) {
+    operating == false ? change(number1) : change(number2)
 
-        if (number1[0] == '-') {
+    function change(number) {
 
-            number1.splice(0, 1);
-            output.textContent = number1.join('');
+        if (number[0] == '-') {
 
-        } else {
-
-            if (number1.length == 0) { number1.unshift('0'); }
-
-            number1.unshift('-');
-            output.textContent = number1.join('');
-
-        }
-
-    } else {
-
-        if (number2[0] == '-') {
-
-            number2.splice(0, 1);
-            output.textContent = number2.join('');
+            number.splice(0, 1);
+            output.textContent = number.join('');
 
         } else {
 
-            if (number2.length == 0) { number2.unshift('0'); }
+            if (number.length == 0) { number.unshift('0'); }
 
-            number2.unshift('-');
-            output.textContent = number2.join('');
+            number.unshift('-')
+            output.textContent = number.join('');
 
         }
+
     }
-};
+
+}
 
 function clear() {
 
@@ -179,21 +154,13 @@ function selectOperator(e) {
 
     number1.length > 0 ? operating = true : operating = false;
 
-    if (number2.length > 0) {
+    if (number2.length > 0) { operate() }
 
-        operate();
-        operator = e.target.textContent;
-
-    } else {
-
-        operator = e.target.textContent;
-
-    }
-
-    unselectOperators();
+    operator = e.target.textContent;
+    unselectOperators()
     this.classList.add('selected');
 
-};
+}
 
 function allClear() {
 
