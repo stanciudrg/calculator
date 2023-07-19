@@ -1,8 +1,12 @@
+// GLOBAL VARIABLES //
+
 let number1 = [];
 let number2 = [];
 let operator = undefined;
 let operating = false;
 let equalized = false;
+
+// DOM ELEMENTS //
 
 const output = document.querySelector('.output');
 const numberButtons = document.querySelectorAll('.number-buttons');
@@ -12,12 +16,18 @@ const allClearButton = document.querySelector('#allclear');
 const clearButton = document.querySelector('#clear');
 const plusMinusButton = document.querySelector('#plusminus');
 
+// MOUSE AND TOUCH-SCREEN SUPPORT //
+
+// Event listeners //
+
 numberButtons.forEach(button => button.addEventListener('click', displayNumbers));
 operatorButtons.forEach(button => button.addEventListener('click', selectOperator));
 equalsButton.addEventListener('click', equalize);
 allClearButton.addEventListener('click', allClear);
 clearButton.addEventListener('click', clear);
 plusMinusButton.addEventListener('click', changeOperator);
+
+// Functions //
 
 function operate() {
 
