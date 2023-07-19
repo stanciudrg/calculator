@@ -4,14 +4,14 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-weight: bold;
 }
 
 
 body {
     display: flex;
     justify-content: center;
-    background-color: #222831;
+    background-color: #070817;
+    touch-action: none;
 }
 
 .main-container {
@@ -37,7 +37,7 @@ body {
     justify-content: flex-end;
     font-size: 3rem;
     font-weight: normal;
-    color: #EEEEEE;
+    color: #eff0fa;
     border-radius: 10px 10px 0 0;
     padding-right: 2.8rem;
 }
@@ -92,17 +92,17 @@ body {
 
 .functional-buttons {
     background-color: #a9a9af;
-    color: #222831;
+    color: #070817;
     transition: .2s;
 }
 
 .functional-buttons:active {
-    background-color: #fafaff;
+    background-color: #eff0fa;
 }
 
 .number-buttons {
     background-color: #393E46;
-    color: #EEEEEE;
+    color: #eff0fa;
     transition: .2s;
 }
 
@@ -112,19 +112,19 @@ body {
 
 .operator-buttons,
 #equals {
-    background-color: #9a3b3b;
-    color: #EEEEEE;
+    background-color: #202469;
+    color: #eff0fa;
     transition: .2s;
 }
 
 #equals:active {
     background-color: #ffffff;
-    color: #9a3b3b;
+    color: #202469;
 }
 
 .selected {
-    background-color: #EEEEEE;
-    color: #9a3b3b;
+    background-color: #eff0fa;
+    color: #202469;
 }
 
 @media(hover: hover) and (pointer: fine) {
@@ -133,14 +133,31 @@ body {
         background-color: #dadae0;
     }
 
+    .functional-buttons:active {
+        background-color: #eff0fa;
+    }
+
     .number-buttons:hover {
         background-color: #525863;
     }
 
-    .operator-buttons:hover,
+    .number-buttons:active {
+        background-color: #727781;
+    }
+
+    .operator-buttons:hover {
+        background-color: #eff0fa;
+        color: #202469;
+    }
+
     #equals:hover {
-        background-color: #EEEEEE;
-        color: #9a3b3b;
+        background-color: #363cb0;
+        color: #eff0fa;
+    }
+
+    #equals:active {
+        background-color: #ffffff;
+        color: #202469;
     }
 
 }
