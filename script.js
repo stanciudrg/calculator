@@ -66,7 +66,8 @@ function operate() {
 
     }
 
-    if ((number1.length > 9 && !number1.includes('.')) || (number1.length > 10 && number1.includes('.'))) {
+    if ((number1.length > 10 && !number1.includes('.') && number1.includes('-')) ||
+        (number1.length > 9 && !number1.includes('.') && !number1.includes('-'))) {
 
         number1 = Number(number1.join('')).toExponential(4).split('');
         output.textContent = number1.join('');
@@ -75,21 +76,27 @@ function operate() {
 
     function roundDecimals(number, places) {
 
-        let keepGoing;
-        let converted = number.toFixed(places).replace(/\.?0*$/, '')
+        let limitDecimalPlaces;
+        let roundedNumber = number.toFixed(places).replace(/\.?0*$/, '');
+        let roundedArray = roundedNumber.toString().split('');
 
-        if (converted.toString().split('').length > 10 && converted.toString().split('').includes('.') && !converted.toString().split('').includes('e')) { keepGoing = true; }
+        if ((roundedArray.length > 11 && roundedArray.includes('.') && roundedArray.includes('-') && !roundedArray.includes('e')) ||
+            (roundedArray.length > 10 && roundedArray.includes('.') && !roundedArray.includes('-') && !roundedArray.includes('e'))) {
 
-        while (keepGoing) {
-
-            if (places == 0) { keepGoing = false; };
-            places--;
-            converted = roundDecimals(number, places);
-            keepGoing = false;
+            limitDecimalPlaces = true;
 
         }
 
-        return converted;
+        while (limitDecimalPlaces) {
+
+            if (places == 0) { limitDecimalPlaces = false; };
+            places--;
+            roundedNumber = roundDecimals(number, places);
+            limitDecimalPlaces = false;
+
+        }
+
+        return roundedNumber;
 
     }
 
@@ -113,7 +120,10 @@ function displayNumbers(e) {
         if (number[0] == 0 && number.length > 0 && number.length < 2 && e.target.id !== 'dot') { number.splice(0, 1) };
         if (number[0] == '-' && number[1] == 0 && number[2] != '.' && number.length > 0 && e.target.id !== 'dot') { number.splice(1, 1) };
 
-        if (number.length < 9 || (number.length < 10 && number.includes('.'))) {
+        if (number.length < 11 && number.includes('.') && number.includes('-') ||
+            (number.length < 10 && number.includes('.')) ||
+            (number.length < 10 && number.includes('-')) ||
+            (number.length < 9)) {
 
             number.push(e.target.textContent)
             output.textContent = number.join('');
@@ -308,7 +318,10 @@ document.addEventListener('keydown', (e) => {
             if (number[0] == 0 && number.length > 0 && number.length < 2 && e.key !== '.') { number.splice(0, 1) };
             if (number[0] == '-' && number[1] == 0 && number[2] != '.' && number.length > 0 && e.key !== '.') { number.splice(1, 1) };
 
-            if (number.length < 9 || (number.length < 10 && number.includes('.'))) {
+            if (number.length < 11 && number.includes('.') && number.includes('-') ||
+                (number.length < 10 && number.includes('.')) ||
+                (number.length < 10 && number.includes('-')) ||
+                (number.length < 9)) {
 
                 number.push(e.key)
                 output.textContent = number.join('');
