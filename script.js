@@ -221,9 +221,56 @@ function stopOperating() {
 
 function unselectOperators() { operatorButtons.forEach(button => { button.classList.remove('selected') }) };
 
+// KEYBOARD SUPPORT //
+
+// Event listener //
+
 document.addEventListener('keydown', (e) => {
 
     e.preventDefault();
+    if (((e.key >= 0 && e.key <= 9) || e.key == '.') && e.key !== ' ') { displayNumbersByKbd(e); }
+    else { selectButtonsByKbd(e); }
+
+})
+
+// Functions //
+
+// Keyboard version of displayNumbers() function //
+
+function displayNumbersByKbd(e) {
+
+    if (operating == false) {
+
+        if (equalized == true) { clear() }
+
+        equalized = false;
+        displayByKbd(number1);
+
+    } else { displayByKbd(number2); }
+
+    function displayByKbd(number) {
+
+        if (e.key == '.' && number.length == 0) { number.push('0'); }
+        if (e.key == '.' && number.includes('.')) { return };
+        if (number[0] == 0 && number.length > 0 && number.length < 2 && e.key !== '.') { number.splice(0, 1) };
+        if (number[0] == '-' && number[1] == 0 && number[2] != '.' && number.length > 0 && e.key !== '.') { number.splice(1, 1) };
+
+        if (number.length < 11 && number.includes('.') && number.includes('-') ||
+            (number.length < 10 && number.includes('.')) ||
+            (number.length < 10 && number.includes('-')) ||
+            (number.length < 9)) {
+
+            number.push(e.key)
+            output.textContent = number.join('');
+            unselectOperators()
+
+        };
+
+    }
+
+}
+
+function selectButtonsByKbd(e) {
 
     switch (e.key) {
 
@@ -292,45 +339,13 @@ document.addEventListener('keydown', (e) => {
 
     }
 
+    // Keyboard version of selectOperator() function //
+
     function selectOperatorByKbd() {
 
         number1.length > 0 ? operating = true : operating = false;
         if (number2.length > 0) { operate() }
-        unselectOperators()
 
     }
 
-    if (((e.key >= 0 && e.key <= 9) || e.key == '.') && e.key !== ' ') {
-
-        if (operating == false) {
-
-            if (equalized == true) { clear() }
-
-            equalized = false;
-            display(number1);
-
-        } else { display(number2); }
-
-        function display(number) {
-
-            if (e.key == '.' && number.length == 0) { number.push('0'); }
-            if (e.key == '.' && number.includes('.')) { return };
-            if (number[0] == 0 && number.length > 0 && number.length < 2 && e.key !== '.') { number.splice(0, 1) };
-            if (number[0] == '-' && number[1] == 0 && number[2] != '.' && number.length > 0 && e.key !== '.') { number.splice(1, 1) };
-
-            if (number.length < 11 && number.includes('.') && number.includes('-') ||
-                (number.length < 10 && number.includes('.')) ||
-                (number.length < 10 && number.includes('-')) ||
-                (number.length < 9)) {
-
-                number.push(e.key)
-                output.textContent = number.join('');
-                unselectOperators()
-
-            };
-
-        }
-
-    }
-
-})
+}
