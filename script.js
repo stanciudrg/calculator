@@ -77,7 +77,8 @@ function operate() {
     }
 
     if ((number1.length > 10 && !number1.includes('.') && number1.includes('-')) ||
-        (number1.length > 9 && !number1.includes('.') && !number1.includes('-'))) {
+        (number1.length > 9 && !number1.includes('.') && !number1.includes('-')) ||
+        (number1.length > 10 && number1.includes('e'))) {
 
         number1 = Number(number1.join('')).toExponential(4).split('');
         output.textContent = number1.join('');
