@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
 
 * {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Courier', monospace;
     letter-spacing: normal;
     box-sizing: border-box;
     margin: 0;
@@ -37,7 +37,7 @@ body {
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    font-size: 3rem;
+    font-size: 2.7rem;
     font-weight: normal;
     color: #eff0fa;
     border-radius: 10px 10px 0 0;
