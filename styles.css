@@ -1,8 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
 
 * {
-    font-family: 'Courier', monospace;
-    letter-spacing: normal;
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -12,7 +11,7 @@
 body {
     display: flex;
     justify-content: center;
-    background-color: #070817;
+    background-color: #050505;
     touch-action: none;
 }
 
@@ -37,9 +36,8 @@ body {
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
-    font-size: 2.7rem;
-    font-weight: normal;
-    color: #eff0fa;
+    font-size: 3rem;
+    color: #f8f8f8;
     border-radius: 10px 10px 0 0;
     padding-right: 2.8rem;
 }
@@ -85,7 +83,7 @@ body {
 .operator-buttons,
 .functional-buttons {
     appearance: none;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     border: none;
     border-radius: 50%;
     box-shadow: none;
@@ -93,73 +91,74 @@ body {
 }
 
 .functional-buttons {
-    background-color: #a9a9af;
-    color: #070817;
+    background-color: #afafaf;
+    color: #050505;
     transition: .2s;
 }
 
 .functional-buttons:active {
-    background-color: #eff0fa;
+    background-color: #f8f8f8;
 }
 
 .number-buttons {
-    background-color: #393E46;
-    color: #eff0fa;
+    background-color: #454545;
+    color: #f8f8f8;
     transition: .2s;
 }
 
 .number-buttons:active {
-    background-color: #727781;
+    background-color: #828282;
 }
 
 .operator-buttons,
 #equals {
-    background-color: #202469;
-    color: #eff0fa;
+    font-weight: bold;
+    background-color: #ff073a;
+    color: #f8f8f8;
     transition: .2s;
 }
 
 #equals:active {
-    background-color: #ffffff;
-    color: #202469;
+    background-color: #f8f8f8;
+    color: #ff073a;
 }
 
 .selected {
-    background-color: #eff0fa;
-    color: #202469;
+    background-color: #f8f8f8;
+    color: #ff073a;
 }
 
 @media(hover: hover) and (pointer: fine) {
 
     .functional-buttons:hover {
-        background-color: #dadae0;
+        background-color: #e0e0e0;
     }
 
     .functional-buttons:active {
-        background-color: #eff0fa;
+        background-color: #f8f8f8;
     }
 
     .number-buttons:hover {
-        background-color: #525863;
+        background-color: #606060;
     }
 
     .number-buttons:active {
-        background-color: #727781;
+        background-color: #818181;
     }
 
     .operator-buttons:hover {
-        background-color: #eff0fa;
-        color: #202469;
+        background-color: #f8f8f8;
+        color: #ff073a;
     }
 
     #equals:hover {
-        background-color: #363cb0;
-        color: #eff0fa;
+        background-color: #ff0739ab;
+        color: #f8f8f8;
     }
 
     #equals:active {
-        background-color: #ffffff;
-        color: #202469;
+        background-color: #f8f8f8;
+        color: #ff073a;
     }
 
 }
@@ -168,6 +167,6 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     text-align: center;
-    color: #eff0fa;
+    color: #f8f8f8;
     padding-bottom: 70px;
 }
